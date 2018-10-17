@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<div class = "container">
+  <div class = "row">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+      <h1>Today's date: {{userCtrl.date}}</h1>
+        <ul class="list-group">
+          <li class="list-group-item list-group-item-secondary">Theaters</li>
+          <div ng-repeat = "theater in userCtrl.theaters ">
+            <li class="list-group-item list-group-item-action list-group-item-success">Name: {{theater.name}} <br>
+              Address: {{theater.address}}<br>
+              City: {{theater.city}}</li>
+            <div ng-repeat = "movie in theater.movies">
+              <li class="list-group-item list-group-item-info">{{movie.name}}</li>
+              <div class="btn-group" role="group" aria-label="Basic example" ng-repeat = "room in movie.rooms">
+                <button type="button" class="btn btn-secondary" ng-click = "userCtrl.purchaseTicket(room)">
+                  <time>{{room.showtime | date:'medium'}}</time>
+                </button>
+              </div>
+            </div>
+          </div>
+          <p ng-show= "!userCtrl.theaters.length">no theaters currently available</p>
+        </ul>
+    </div>
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+      <ul class="list-group">
+        <li class="list-group-item list-group-item-secondary">Previous tickets purchased</li>
+        <div ng-repeat = "ticket in userCtrl.user.tickets" class="list-group-item list-group-item-action list-group-item-success">
+          <h2>Purchased Date:{{ticket.purchaseDate | date:'medium'}}</h2>
+          <h3>Movie: {{ticket.rooms.movie.name}} <br>
+             Room: {{ticket.rooms.roomNumber}}<br>
+             Show Time: {{ticket.rooms.showtime | date:'medium'}}</h3>
+          <h3 >Theater: {{ticket.rooms.theater.name}} {{ticket.rooms.theater.address}}, {{ticket.rooms.theater.city}}, {{ticket.rooms.theater.state}} </h3>
+        </div>
+        <p ng-show= "!userCtrl.user.tickets.length">no tickets previously purchased</p>
+      </ul>
+    </div>
+  </div>
+</div>

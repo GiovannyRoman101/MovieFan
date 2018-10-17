@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<div class = "container">
+  <div class = "row">
+    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+      <ul class="list-group">
+        <li class="list-group-item list-group-item-success">Theaters currently available</li>
+        <div ng-repeat = "theater in adminCtrl.theaters">
+          <li class="list-group-item list-group-item-action list-group-item-info">Name: {{theater.name}} <br>
+             Address: {{theater.address}} <br>
+             City: {{theater.city}}
+          </li>
+        </div>
+        <p ng-show= "!adminCtrl.movies.length">no theaters currently available</p>
+      </ul>
+      <button class="btn btn-lg btn-primary btn-block" ng-int ="toggletheater = false" ng-click="toggletheater = !toggletheater">create a theater</button>
+      <br>
+      <div ng-show = "toggletheater">
+        <label>Enter a theater name</label>
+        <label for="inputTheaterName" class="sr-only">theaterName</label>
+        <input type="text" id="inputTheaterName" class="form-control" placeholder="Theater name" ng-model ="adminCtrl.theater.name" required autofocus>
+        <label for="address">Address</label>
+        <input type="text" class="form-control" id="address" placeholder="1234 Main St" ng-model ="adminCtrl.theater.address" required>
+
+        <label for="SelectState"> Select a State: </label><br>
+        <select name="SelectState" ng-model="adminCtrl.theater.state">
+          <option value="">Choose a state</option>
+          <option value="Illinois">Illinois</option>
+          <option value="New York">New York</option>
+        </select>
+        <br>
+        <label for="SelectCity"> Select a City: </label>
+        <br>
+        <select name="SelectCity" ng-model="adminCtrl.theater.city">
+          <option value="">Choose a city</option>
+          <option value="Chicago">Chicago</option>
+          <option value="Springfield">Springfield</option>
+          <option value="New York City">New York City</option>
+        </select>
+        <br>
+        <br>
+        <button class="btn btn-lg btn-primary btn-block" type="submit" ng-click="adminCtrl.createTheater(adminCtrl.theater)">create/add a theater</button>
+        <br>
+      </div>
+    </div>
+    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+      <ul class="list-group">
+        <li class="list-group-item list-group-item-success">Movies currently available</li>
+        <div ng-repeat = "movie in adminCtrl.movies">
+          <li class="list-group-item list-group-item-action list-group-item-info">{{movie.name}}</li>
+        </div>
+        <p ng-show= "!adminCtrl.movies.length">no movies currently available</p>
+      </ul>
+      <button class="btn btn-lg btn-primary btn-block" ng-int ="togglemovie = false" ng-click="togglemovie = !togglemovie">create a movie</button>
+
+      <div ng-show = "togglemovie">
+        <br>
+        <label>Enter a movie name</label>
+        <label for="inputMovieName" class="sr-only">movieName</label>
+        <input type="text" id="inputMovieName" class="form-control" placeholder="movie name" ng-model ="adminCtrl.movie.name" required autofocus>
+        <label for="description">description:</label>
+        <input type="text" class="form-control" id="description" ng-model = "adminCtrl.movie.description" placeholder="enter a description" value="" required>
+
+        <label for="SelectGenre"> Select a Genre: </label><br>
+        <select name="SelectGenre" ng-model="adminCtrl.movie.genre">
+          <option value="">Choose a genre</option>
+          <option value="horror">horror</option>
+          <option value="comedy">comedy</option>
+          <option value="action">action</option>
+        </select>
+        <br>
+        <br>
+        <button class="btn btn-lg btn-primary btn-block" type="submit" ng-click="adminCtrl.createMovie(adminCtrl.movie)">create/add a movie</button>
+      </div>
+
+    </div>
+    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+      <button class="btn btn-lg btn-primary btn-block" ng-int ="toggleattach = false" ng-click="toggleattach = !toggleattach">attach a movie</button>
+      <div ng-show = "toggleattach">
+        <br>
+        <label for="SelectTheater"> Select a Theater: </label>
+        <select ng-model="adminCtrl.room.theater" ng-options="theater.name for theater in adminCtrl.theaters">
+        </select>
+        <br>
+        <label for="SelectMovie"> Select a movie: </label>
+        <br>
+        <select ng-model="adminCtrl.room.movie" ng-options="movie.name for movie in adminCtrl.movies">
+        </select>
+        <br>
+        <label for="inputseatavailable">number of seats of available</label>
+        <input type="text" id="inputseatavailable" class="form-control" placeholder="number of seats" ng-model ="adminCtrl.room.ticketAvailable" required autofocus>
+        <!-- depending on the web browser used, the time and date input will be different -->
+        <div>
+          <label for="movie-time">Date/time:</label>
+          <input ng-model = "adminCtrl.room.showtime" class="form-control" placeholder="eg. 2018-06-12T19:30" type="datetime-local" id="movie-time"
+               name="movie-time"
+               min="2018-06-07T00:00" />
+        </div>
+        <label for="roomnumber">Enter a room number</label>
+        <input type="text" id="roomnumber" class="form-control" placeholder="room number" ng-model ="adminCtrl.room.roomnumber" required autofocus>
+        <br>
+        <button class="btn btn-lg btn-primary btn-block" type="submit" ng-click="adminCtrl.createRoom(adminCtrl.room)">create/add room </button>
+      </div>
+    </div>
+  </div>
+</div>
