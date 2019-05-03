@@ -2,11 +2,22 @@
 
 MovieFan is a web application that allows users to view movies currently playing. Users are able to buy tickets for a movie and view previously bought tickets. Admins are able to create theaters, movies, and add movies to theaters.
 
-#Configuration
+## Configuration
 This application uses Postgresql and in the MovieFan/src/main/resources, the application.properties needs
 to be modified to match users Postgresql settings. For the front end, it uses npm to manage dependencies.
 
-#installation
+## Built With
+
+- web pack
+- Java
+- Javascript
+- Postgresql
+- Spring
+- hibernate
+- AngularJS
+- Bootstrap
+
+## installation
 In the ui folder, to install the dependencies
 
 ```bash
@@ -17,6 +28,11 @@ and to run it,
 ```bash
 npm start
 ```
+## ScreenShots
+Admin
+![screenshot](ScreenShotAdmin.png)
+User
+![screenshot](ScreenShotUser.png)
 
-#Author/s
+## Author/s
 Giovanny Roman
